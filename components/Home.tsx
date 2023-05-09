@@ -2,7 +2,11 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet} from 'react-nativ
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 
+
 export default function Home() {
+
+   
+
   return (
     <ScrollView style={styles.container}>
         <TouchableOpacity style={styles.button}>
@@ -17,6 +21,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     container:{
         backgroundColor:'#DBF2FF',
+        
     },
    
     button:{

@@ -1,22 +1,45 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet,StatusBar } from 'react-native'
+import { Text, View, StyleSheet,StatusBar, ImageBackground } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import mainNavigation from './navigator';
+import backImg from './imgs/fundinho2.jpg';
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64 ;
 
-export default function Header()  {
+interface LoginProps {
+  onButtonClick: () => void;
+  showUser: () => void;
+
+
+};
+
+
+
+export default function Header(props: LoginProps)  {
+
+  
   
     return (
       <View style={styles.container}>
+        <ImageBackground style={styles.image}  source={backImg}/>
+        
         <View style={styles.titleContainer}>
-        <FontAwesome name="hand-peace-o" size={30} color="black" />
-        <Text style={styles.title}>  TôPresente </Text>
+          <FontAwesome name="hand-peace-o" size={30} color="white" />
+          <Text style={styles.title}>  TôPresente </Text>
         </View>
+        
         <View style={styles.UserContent}>
-             <Text>User.name</Text>
-             <Feather name="user" size={24} color="black" />
+             <Text  style={styles.text} >User.name</Text>
+            
+             <View style={styles.userSpace}>
+                <Feather style={styles.useIcon} name="user" size={24} color="white" onPress={props.showUser} />
+                <MaterialIcons  name="logout" size={24} color="white" onPress={props.onButtonClick} />
+             </View>
+             
         </View>
+        
         
       </View>
     )
@@ -24,25 +47,50 @@ export default function Header()  {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#83D2FF',
-      paddingTop: statusBarHeight,           
+    container: {            
+      paddingTop: statusBarHeight,    
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',   
+      
+    },
+    image:{
+      width:'100%',
+      height:'300%',
+      position:'absolute',    
     },
     UserContent:{
         flexDirection:"row",
         justifyContent:'space-between',
-        paddingTop:5,
-        paddingLeft:15,
-        width: '75%',
+        marginTop:30,
+        width: '90%',         
+    },
+    text:{
+      color:'white',
+      
+    },
+    userSpace:{
+      flexDirection:"row",
+      justifyContent:'space-between',
+    },
+    useIcon:{
+        paddingRight:20,
     },
     titleContainer:{
         flexDirection:"row",
-        padding: 5,
+        
         fontSize:20,
+        position:'absolute',
     },
     title:{
         fontSize:20,
         fontWeight:"bold",
+        color:'white'
+        
        
     },
   });
+
+function render() {
+  throw new Error('Function not implemented.');
+}
