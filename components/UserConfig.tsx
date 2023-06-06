@@ -2,30 +2,33 @@ import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react
 import React from 'react'
 import backImg from './imgs/fundinho2.jpg';
 import { AntDesign } from '@expo/vector-icons';
-import Header from './Header';
+
 
 interface LoginProps {
     onButtonClick: () => void;
-    showUser: () => void;
-  
+    showUser: () => void; 
   
   };
 
   
 const UserConfig = (props: LoginProps) => {
 
-
   return (
-    <View style={styles.container}>
-     <ImageBackground style={styles.image}  source={backImg}/>
-     
     
-    
-     <TouchableOpacity style={styles.button}onPress={props.onButtonClick}>
-     <AntDesign name="back" size={24} color="black" />
-     </TouchableOpacity>
-     
+    <View style={styles.container}>     
+      <ImageBackground style={styles.image}  source={backImg}/>   
+      <View >
+      <TouchableOpacity style={styles.button}onPress={props.onButtonClick}>
+      <AntDesign name="back" size={24} color="black" />
+      </TouchableOpacity>          
+      </View>
+
+      <View style={styles.info}>
+      <Text>nome</Text>
+      <Text>email</Text>
+      <Text>editar senha</Text>
     </View>
+  </View> 
   )
 }
 
@@ -38,7 +41,16 @@ const styles = StyleSheet.create({
       width:40,
       justifyContent: 'center',
       alignItems: 'center',
-      position:'absolute'
+      position:'absolute',
+      
+    },
+    info: {
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop:100,
+      borderRadius:10,
+     
     },
     image:{
       width:'100%',

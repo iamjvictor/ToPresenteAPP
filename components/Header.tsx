@@ -3,7 +3,7 @@ import { Text, View, StyleSheet,StatusBar, ImageBackground } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import mainNavigation from './navigator';
+
 import backImg from './imgs/fundinho2.jpg';
 
 const statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64 ;
@@ -14,9 +14,6 @@ interface LoginProps {
 
 
 };
-
-
-
 export default function Header(props: LoginProps)  {
 
   
@@ -30,14 +27,9 @@ export default function Header(props: LoginProps)  {
           <Text style={styles.title}>  TôPresente </Text>
         </View>
         
-        <View style={styles.UserContent}>
-             <Text  style={styles.text} >User.name</Text>
-            
-             <View style={styles.userSpace}>
-                <Feather style={styles.useIcon} name="user" size={24} color="white" onPress={props.showUser} />
-                <MaterialIcons  name="logout" size={24} color="white" onPress={props.onButtonClick} />
-             </View>
-             
+        <View style={styles.UserContent}>             
+          <Feather style={styles.useIcon} name="user" size={24} color="white" onPress={props.showUser} />
+          <MaterialIcons  name="logout" size={24} color="white" onPress={props.onButtonClick} />
         </View>
         
         
