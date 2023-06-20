@@ -41,14 +41,14 @@ export default function Header(props: LoginProps)  {
 const styles = StyleSheet.create({
     container: {            
       paddingTop: statusBarHeight,    
-      flex: 1,
+      
       justifyContent: 'center',
       alignItems: 'center',   
       
     },
     image:{
-      width:'100%',
-      height:'300%',
+      width:'200%',
+      height:'400%',
       position:'absolute',    
     },
     UserContent:{

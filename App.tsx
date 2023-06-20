@@ -42,12 +42,12 @@ export default function App() {
 
   return (
     
-    < ScrollView style={styles.container}>          
+    < View style={styles.container}>          
       <Header onButtonClick={changeLog} showUser={showUserPage}/>
       <Home/>
       
       <StatusBar style="auto" />
-    </  ScrollView>
+    </  View>
 
     
   );

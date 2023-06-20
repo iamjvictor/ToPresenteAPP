@@ -1,7 +1,7 @@
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import backImg from './imgs/fundinho2.jpg';
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 interface LoginProps {
@@ -18,8 +18,8 @@ const UserConfig = (props: LoginProps) => {
     <View style={styles.container}>     
       <ImageBackground style={styles.image}  source={backImg}/>   
       <View >
-      <TouchableOpacity style={styles.button}onPress={props.onButtonClick}>
-      <AntDesign name="back" size={24} color="black" />
+      <TouchableOpacity style={styles.backButton}onPress={props.onButtonClick}>
+      <MaterialIcons name="arrow-back" size={20} color="black" />
       </TouchableOpacity>          
       </View>
 
@@ -33,15 +33,9 @@ const UserConfig = (props: LoginProps) => {
 }
 
 const styles = StyleSheet.create({
-    button: {
-      backgroundColor: 'white',
-      marginTop: 8,
-      marginLeft: 8,
-      borderRadius: 25,
-      width:40,
-      justifyContent: 'center',
-      alignItems: 'center',
-      position:'absolute',
+  backButton: {
+    position: "absolute",
+    
       
     },
     info: {

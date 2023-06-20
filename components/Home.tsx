@@ -2,17 +2,8 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInp
 import React, { useEffect, useState }from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 
-import Model from '../models/objects'
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    faltas: number & { readonly __integer: never };
-    presença: number & { readonly __integer: never };
-    porcentagem: number;
-    
-  }
+import Model, { Turma } from '../models/objects'
+import List from './List';
 
 
 export default function Home() {  
@@ -20,6 +11,8 @@ export default function Home() {
   const [AddTurma, setAddTurma] = useState(true)
   const [ClassName, setClassName] = useState('')
   const [ClassHours, setClassHours] = useState('')
+  const [Turmas, setTurmas] = useState< Turma[]>([])
+
 
   const addTurma = () => {
     setCard(!Card);
@@ -29,31 +22,41 @@ export default function Home() {
   const sendTurma = (ClassName: string, ClassHours: number) => {
     const turma =  new Model.Turma (ClassName, ClassHours);
     turma.adicionarTurma();
+    setTurmas((prevTurmas) => [...prevTurmas, turma]);
     setClassName('');
     setClassHours('');
   };
 
  
- 
+  
 
   return (
 
 
     <ScrollView style={styles.container}>
       {AddTurma && (
+
         <View style={styles.buttonArea}>
-        <TouchableOpacity style={styles.button} onPress={addTurma}>
-            <MaterialIcons name="group-add" size={30} color="black" />
-            <Text style={styles.buttonTitle}>Criar Nova turma</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={addTurma}>
+              <MaterialIcons name="group-add" size={30} color="black" />
+              <Text style={styles.buttonTitle}>Criar Nova turma</Text>
+          </TouchableOpacity>         
         </View>  
+        
       )}
+
+        
       
       {/* Funcionalidade do Card ao clicar em adicionar turma*/}
 
          {Card && (
           
         <View style={styles.card}>
+          {/* Botão de voltar */}
+          <TouchableOpacity style={styles.backButton} onPress={addTurma}>
+            <MaterialIcons name="arrow-back" size={20} color="black" />
+          </TouchableOpacity>
+
           <Text style={styles.title}>Adicionar Nova Turma</Text>
           <TextInput 
           value={ClassName}
@@ -75,9 +78,14 @@ export default function Home() {
 
         </View>
 
-      )}     
+      )}    
+      <View style={styles.buttonArea}>
+      <List arrayProp={Turmas}/>  
+      </View>
+       
       
     </ScrollView>
+    
   )
 }
 
@@ -103,15 +111,26 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:15,
     },
+    
     title:{
         fontSize:20,
         fontWeight:"bold",
         paddingBottom:30,
     },
+    backButton: {
+      position: "absolute",
+      top: -20,
+      left: -20,
+      margin: 10,
+      
+      
+      
+    },
     card: {
       alignItems:'center',
       margin:30,
       padding:5,
+      position:'relative',
     },
     input:{
       backgroundColor:'grey',
