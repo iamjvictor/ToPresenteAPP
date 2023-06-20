@@ -1,8 +1,8 @@
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput} from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput,} from 'react-native'
 import React, { useEffect, useState }from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 
-
+import Model from '../models/objects'
 
 interface User {
     id: number;
@@ -19,15 +19,22 @@ export default function Home() {
   const [Card, setCard] = useState(false);
   const [AddTurma, setAddTurma] = useState(true)
   const [ClassName, setClassName] = useState('')
+  const [ClassHours, setClassHours] = useState('')
 
   const addTurma = () => {
     setCard(!Card);
     setAddTurma(!AddTurma)
   };
 
-  const inputChange = (text: string) => {
-    setClassName(text)
+  const sendTurma = (ClassName: string, ClassHours: number) => {
+    const turma =  new Model.Turma (ClassName, ClassHours);
+    turma.adicionarTurma();
+    setClassName('');
+    setClassHours('');
   };
+
+ 
+ 
 
   return (
 
@@ -41,6 +48,8 @@ export default function Home() {
         </TouchableOpacity>
         </View>  
       )}
+      
+      {/* Funcionalidade do Card ao clicar em adicionar turma*/}
 
          {Card && (
           
@@ -48,12 +57,18 @@ export default function Home() {
           <Text style={styles.title}>Adicionar Nova Turma</Text>
           <TextInput 
           value={ClassName}
-          onChangeText={inputChange}
+          onChangeText={setClassName}
           placeholder='Nome da Turma' 
+          style={styles.input}/>
+          <TextInput 
+          keyboardType = 'numeric'
+          value={ClassHours}
+          onChangeText={setClassHours}
+          placeholder='Carga Horaria' 
           style={styles.input}/>
 
           
-          <TouchableOpacity style={styles.button} onPress={addTurma}>
+          <TouchableOpacity style={styles.button} onPress={() => sendTurma (ClassName,  parseInt(ClassHours, 10))}>
             <MaterialIcons name="group-add" size={30} color="black" />
             <Text style={styles.buttonTitle}>Adicionar</Text>
         </TouchableOpacity> 
@@ -104,5 +119,6 @@ const styles = StyleSheet.create({
       height:40,
       width:'75%',
       textAlign:'center',
+      margin: 5,
     },
   });
