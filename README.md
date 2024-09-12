@@ -5,8 +5,11 @@
 Um aplicativo para chamada de turma é uma solução prática e eficiente para professores ou instrutores de cursos que precisam registrar a presença de seus alunos de forma rápida e precisa. O aplicativo permite que os usuários criem turmas e listas de alunos, e façam a chamada de forma interativa e automática.
 
 A aplicação, criada usando React Native, oferece um conjunto de interfaces intuitivas, inspiradas no conceito do Google Classroom, com o objetivo específico de fornecer aos professores uma interface acessível para realizar a chamada em seus dispositivos móveis.
+<div>
+   <img src="TelaInicial.png" />
+   <img src="AdicionarTurma.png"/>   
+</div>
 
-<img src="AdicionarTurma.png"/>
 
 ## Funcionalidades
 
